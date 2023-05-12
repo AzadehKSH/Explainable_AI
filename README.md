@@ -3,8 +3,7 @@ Every week I recieve the challang from the Prof.Martin Becker and its my answers
 
 # Table of contents
 1. [02_exercises](#02_exercises)
-
-  1.1 [Specifying ML Tasks](#02_exercises) 
+1.1 [Specifying ML Tasks](#02_exercises) 
 
 
 
