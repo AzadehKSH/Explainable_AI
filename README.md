@@ -104,7 +104,169 @@ True Negative (TN): The number of examples that are actually negative and are co
 | Actual Negative     | 16     |   974 |
 |
 
+precision = TP / (TP + FP)
+
+precision = 8 / (8 + 16) = 0.333
+
+recall = TP / (TP + FN)
+
+recall = 8 / (8 + 2) = 0.8
+
+F1-score = 2 * (precision * recall) / (precision + recall)
+
+F1-score = 2 * (0.333 * 0.8) / (0.333 + 0.8) = 0.470
+
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+accuracy = (8 + 974) / (8 + 2 + 16 + 974) = 0.973
 
 
+2. Given the output ˆy of a classifier and the ground truth labels y, calculate and draw the ROC curve?!
+yˆ = [0.5, 0.35, 0.8, 0.1, 0.2]T
+y = [1, 0, 1, 0, 1]T
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+y_hat = np.array([0.5, 0.35, 0.8, 0.1, 0.2])
+y = np.array([1, 0, 1, 0, 1])
+
+# sort predictions by confidence
+sorted_HL = np.argsort(y_hat)[::-1]
+y_hat_sorted = y_hat[sorted_HL]
+y_sorted = y[sorted_HL]
+
+# calculate TPR and FPR for different thresholds
+thresh= np.append(y_hat_sorted, 1)
+tpr = np.zeros(len(thresh))
+fpr = np.zeros(len(thresh))
+for i, th in enumerate(thresh):
+    y_pred = (y_hat_sorted >= th).astype(int)
+    tp = np.sum((y_pred == 1) & (y_sorted == 1))
+    fn = np.sum((y_pred == 0) & (y_sorted == 1))
+    fp = np.sum((y_pred == 1) & (y_sorted == 0))
+    tn = np.sum((y_pred == 0) & (y_sorted == 0))
+    tpr[i] = tp / (tp + fn)
+    fpr[i] = fp / (fp + tn)
+
+# plot ROC curve
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], 'k--')
+plt.xlabel('False Positive')
+plt.ylabel('True Positive')
+plt.title('ROC Curve')
+plt.show()
+```
+
+3. Explain when using a ROC curve make sense compared to just using accuracy etc?!
+ROC curves are typically used in binary classification problems where the positive class is rare or the cost of false positives and false negatives are significantly different. In such cases, accuracy alone may not be a good metric to evaluate the performance of a classifier.
+
+For example, consider a medical diagnostic test where the goal is to identify patients who have a rare disease. In this case, the positive class (patients with the disease) is rare, and misclassifying even a small fraction of positive cases as negative can have serious consequences. On the other hand, misclassifying negative cases as positive is not as critical. In such scenarios, a classifier's performance can be better evaluated using a ROC curve, which provides a more comprehensive view of the classifier's trade-offs between true positives and false positives.
+
+The ROC curve is also useful when comparing the performance of different classifiers, especially when they have different decision thresholds. In such cases, the ROC curve allows us to compare the classifiers' performances across all possible decision thresholds.
+
+In summary, ROC curves are useful when the cost of false positives and false negatives is significantly different, the positive class is rare, or when comparing the performance of different classifiers. In such cases, using accuracy alone may not provide a comprehensive view of the classifier's performance, and the ROC curve can provide more insight into the classifier's behavior across different decision thresholds.
+
+4. What is a problem of the ROC curve in heavily imbalanced classification problems?!
+A problem with using the ROC curve in heavily imbalanced classification problems is that it can be misleading. When the dataset is heavily imbalanced, meaning that one class is much rarer than the other, the ROC curve may not provide an accurate representation of the classifier's performance. This is because the ROC curve measures the classifier's trade-offs between true positives and false positives across all possible decision thresholds, but in imbalanced datasets, the classifier may perform well in terms of false positives but poorly in terms of true positives.
+
+For example, consider a medical diagnostic test where the goal is to identify patients who have a rare disease. If the positive class (patients with the disease) is very rare, the ROC curve may show good performance because the classifier can achieve low false positive rates, but this may be misleading because the true positive rate may still be very low. In such cases, it may be more appropriate to use evaluation metrics that focus on the performance of the positive class, such as precision, recall, or the F1-score.
+
+In summary, while the ROC curve is a useful tool for evaluating binary classifiers, it may not provide an accurate representation of the classifier's performance in heavily imbalanced datasets. In such cases, it may be more appropriate to use other evaluation metrics that focus on the performance of the positive class.
+
+5. Explain the tradeoff between k-fold crossvalidation and splitting data into a single train and test part?!
+The tradeoff between k-fold cross-validation and splitting data into a single train and test part lies in the balance between the bias and variance of the performance estimate of the model.
+
+On the one hand, splitting the data into a single train and test part is a simple and fast method for evaluating the performance of a model. However, this approach may result in a high variance in the performance estimate, as the performance can be highly dependent on the random selection of the train and test sets. This means that the performance estimate may not be representative of the true performance of the model on unseen data. Moreover, this method uses only a single split of the data, which may lead to overfitting of the model to the specific train-test split.
+
+On the other hand, k-fold cross-validation addresses the high variance issue by averaging the performance over multiple train-test splits. This method divides the data into k-folds, trains the model on k-1 folds, and tests it on the remaining fold. This process is repeated k times, with each fold serving as the test set once. The performance is then averaged across all the k folds. K-fold cross-validation provides a more reliable estimate of the performance of the model as it evaluates the model on different subsets of the data, reducing the impact of the random selection of the train and test sets. However, this method is computationally more expensive than splitting the data into a single train and test part, as it requires training the model k times.
+
+In summary, the choice between k-fold cross-validation and splitting data into a single train and test part depends on the balance between the bias and variance of the performance estimate of the model. If a quick evaluation is required, or if the dataset is very large, splitting the data into a single train and test part may be appropriate. However, if a more accurate estimate of the model performance is required, k-fold cross-validation is a better choice, despite its higher computational cost.
+
+<h2> 6 Information Leakage </h2>
+
+1. Define the term information leakage with respect to model training?!
+
+Information leakage in model training refers to a situation where information from the test set (or any other data that the model should not have access to during training) is unintentionally used in the training process, leading to overly optimistic performance estimates. In other words, the model may learn to exploit patterns in the test data that are not generalizable to new, unseen data.
+
+Information leakage can occur in various ways, such as when features that are not present in the training set are used to train the model, or when the test set is used to tune hyperparameters, select features, or preprocess the data. Leakage can also occur when the model is evaluated multiple times during the training process, and the evaluation metrics are used to adjust the model's parameters.
+
+Information leakage can be detrimental to the performance of the model, as it may lead to overfitting and poor generalization to new data. To avoid information leakage, it is important to carefully separate the training, validation, and test data and ensure that the model does not have access to the test set during training. It is also important to follow best practices for feature selection, hyperparameter tuning, and model evaluation to avoid leakage and ensure that the performance estimates are reliable and generalizable.
+
+2. Decide, whether the following scenarios have information leakage. Explain your decicsion?!
+(a) You want to train an object detector on a video of football. To later on estimate
+the performance of the detector, you split the data randomly into training and
+test parts. You only use the training data to fit the model.
+(b) You want to classify gene data. Since each instance has 10000 features, you first
+want to select the top k features to avoid overfitting. You first run a statistical
+test to select these features, then you split the data into training and test parts.
+(c) You want to classify nodes in a citation graph with respect to the contents of
+the documents. You augment the nodes with word frequencies, which are used as
+features for the classifier. Then you split the data.
+
+(a) This scenario does not have information leakage. The data has been split randomly into training and test sets, and only the training set has been used to fit the model. As long as the test set is not used in any way during the training process, there is no risk of information leakage.
+
+(b) This scenario may have information leakage. If the statistical test used to select the top k features is based on the entire dataset (i.e., both the training and test sets), then information from the test set may have leaked into the feature selection process, leading to overly optimistic performance estimates. To avoid information leakage, the feature selection should be performed on the training set only, and the test set should be kept completely separate.
+
+(c) This scenario does not have information leakage, as long as the word frequencies are computed based only on the training set and not on the entire dataset. The data has been split into training and test sets, and the features have been generated based on the training set only. As long as the test set is not used in any way during the feature engineering process, there is no risk of information leakage.
+
+
+<h2> 7 KNN Classifier</h2>
+For point 3:  [3, 2, 1, 10, 8]. The three closest labeled points are [1, 1, 2],  predict the majority class, which is 1.
+For point 10:  [10, 9, 6, 3, 1]. The three closest labeled points are [1, 1, 2], predict the majority class, which is 1.
+For point 6:  [6, 5, 2, 7, 5]. The three closest labeled points are [2, 2, 1],  predict the majority class, which is 2.
+then [3, 10, 6] = [1, 1, 2].
+
+<h2> 8 Over- and Underfitting </h2>
+
+1. Define overfitting?!
+
+Overfitting is a common problem in machine learning where a model is too complex and fits the training data too closely, to the point that it captures the noise in the training data rather than the underlying pattern. As a result, the model has poor generalization performance and fails to accurately predict outcomes on new, unseen data. In other words, an overfit model is too specialized to the training data, and thus, it does not capture the true relationship between the input features and the target variable. Overfitting occurs when the model has too many parameters or when it is trained for too many iterations.
+
+2. Define underfitting?!
+
+Underfitting is the opposite of overfitting and occurs when a machine learning model is too simple to capture the underlying pattern of the data. In other words, the model is not able to capture the complexity of the data and the relationship between the input features and the target variable. An underfit model performs poorly on both the training data and new, unseen data because it cannot learn the underlying patterns and relationships in the data. This can happen if the model is not complex enough or if it is not trained for enough iterations.
+
+3. Explain the role that regularization plays with respect to over- and underfitting. Give Two xamples of regularization techniques?!
+
+Regularization is a technique used to prevent overfitting by adding a penalty term to the model's objective function that discourages overly complex models. This penalty term aims to control the model's complexity, forcing it to focus on the most relevant features and avoid learning noise and irrelevant details. Regularization can help prevent underfitting by providing additional structure to the model, allowing it to better capture the underlying patterns in the data.
+
+Two examples of regularization techniques are:
+
+L1 and L2 regularization: L1 and L2 regularization are two common techniques used to control model complexity by adding a penalty term to the model's objective function. L1 regularization adds a penalty term proportional to the absolute value of the model's weights, while L2 regularization adds a penalty term proportional to the square of the model's weights. Both techniques encourage the model to use only the most important features by shrinking the weights of irrelevant or noisy features towards zero.
+
+Dropout regularization: Dropout is a regularization technique used in neural networks to prevent overfitting. Dropout works by randomly dropping out a proportion of the nodes in the network during each training iteration, forcing the remaining nodes to learn more robust features that are less dependent on the specific input features. This helps prevent overfitting by reducing the model's dependence on specific input features and encouraging it to learn more generalizable patterns.
+
+4.Draw a plot that represents an underfitted, overfitted, and well fitted model, respectively?!
+``` Python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+np.random.seed(42)
+X = np.linspace(0, 1, 10)
+y = np.sin(X * 4 * np.pi) + np.random.normal(0, 0.3, size=X.shape)
+
+
+models = [
+    {"name": "Underfitting", "degree": 1},
+    {"name": "Well-fitted", "degree": 4},
+    {"name": "Overfitting", "degree": 8},
+]
+
+
+plt.figure(figsize=(15, 4))
+for i, model in enumerate(models):
+    ax = plt.subplot(1, 3, i+1)
+    ax.scatter(X, y, label="Data", color="black", alpha=0.5)
+    coefs = np.polyfit(X, y, deg=model["degree"])
+    y_pred = np.polyval(coefs, X)
+    ax.plot(X, y_pred, label="Model", color="blue")
+    ax.set_title(model["name"])
+    ax.legend(loc="best")
+plt.tight_layout()
+plt.show()
+```
 
 
