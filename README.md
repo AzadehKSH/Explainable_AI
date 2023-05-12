@@ -71,4 +71,13 @@ where n is the number of examples in the dataset, yi is the actual value of the 
 
 The MAE is a good measure of the average absolute deviation of the predictions from the true values, and is less sensitive to outliers compared to the mean squared error (MSE). However, it does not penalize large errors as strongly as the MSE, and may not be as effective in cases where small errors are more important than large errors.
 
+<h2> 4 Hyperparameters </h2>
+What is the difference between hyperparameters and parameters. Give an example of a hyperparameter for a logistic regression model with L2 regularization?!
+In machine learning, a model is typically defined by a set of parameters and hyperparameters, which are used to control the behavior of the model during training and inference.
+
+Parameters are the variables that the model learns from the training data to make predictions. They are the weights that are updated during the training process to minimize the loss function. In a logistic regression model, the parameters are the coefficients of the input features that are used to compute the predicted probability of the target class.
+
+Hyperparameters, on the other hand, are the variables that control the behavior of the learning algorithm itself, and are set before the training process begins. They determine the settings of the algorithm that cannot be learned from the data itself. Examples of hyperparameters include the learning rate, regularization strength, number of hidden layers in a neural network, etc.
+
+An example of a hyperparameter for a logistic regression model with L2 regularization is the regularization strength parameter, often denoted as λ (lambda). L2 regularization, also known as ridge regression, adds a penalty term to the loss function to prevent overfitting of the model. The regularization strength determines how much weight is given to this penalty term, relative to the original loss function. A higher value of λ will result in a more heavily regularized model, which may be less prone to overfitting but also less flexible in fitting the training data. The value of λ is typically determined using a validation set or cross-validation to select the hyperparameter that results in the best performance on a held-out set.
 
