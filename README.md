@@ -273,6 +273,6 @@ plt.tight_layout()
 plt.show()
 ```
 <p align="center">
-  <img src="https://github.com/AzadehKSH/Explainable_AI/blob/main/fitting.JPG" width="350" title="Fitting">
+  <img src="https://github.com/AzadehKSH/Explainable_AI/blob/main/fitting.JPG" width="600" title="Fitting">
 </p>
 
