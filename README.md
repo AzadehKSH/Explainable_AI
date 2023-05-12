@@ -6,6 +6,7 @@
 <p> For the following problem descriptions, explain whether the problem is a supervised or an
 unsupervised problem and whether it is classification, regression, or clustering.
   </p>
+  <style="color:red">
  1.  We have a set of images, with descriptions of what object is depicted in the images.
 Given new images, we want to decide what object is on it?
 <p> This is a supervised problem of image classification. The goal is to train a model using the set of images with their corresponding labels, so that it can learn to identify and classify objects in new images. The input data is the set of images, and the output is the predicted label of the object depicted in the image.
