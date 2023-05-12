@@ -11,7 +11,7 @@ unsupervised problem and whether it is classification, regression, or clustering
 Given new images, we want to decide what object is on it?
 <p> This is a supervised problem of image classification. The goal is to train a model using the set of images with their corresponding labels, so that it can learn to identify and classify objects in new images. The input data is the set of images, and the output is the predicted label of the object depicted in the image.
   </p>
-###2. Given part of a text, we want to predict the next word?
+### 2. Given part of a text, we want to predict the next word?
   <p> 
 This is a supervised problem of language modeling. The goal is to train a model using a large corpus of text data, so that it can learn to predict the next word given a sequence of previous words. The input data is the sequence of words, and the output is the predicted probability distribution over the next word in the vocabulary. This problem can be solved using techniques such as recurrent neural networks (RNNs) and transformer-based models, which are specifically designed for language modeling tasks.
   </P>
