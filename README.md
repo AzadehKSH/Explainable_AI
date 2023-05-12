@@ -1,7 +1,7 @@
 # Explainable_AI
 # Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
 
-<h1> Questions week 1 </h1>
+<h1> Questions 02_exercises file </h1>
 <h2> 1-Specifying ML Tasks </h2>
 <p> For the following problem descriptions, explain whether the problem is a supervised or an
 unsupervised problem and whether it is classification, regression, or clustering.
@@ -89,4 +89,22 @@ Parameters are the variables that the model learns from the training data to mak
 Hyperparameters, on the other hand, are the variables that control the behavior of the learning algorithm itself, and are set before the training process begins. They determine the settings of the algorithm that cannot be learned from the data itself. Examples of hyperparameters include the learning rate, regularization strength, number of hidden layers in a neural network, etc.
 
 An example of a hyperparameter for a logistic regression model with L2 regularization is the regularization strength parameter, often denoted as λ (lambda). L2 regularization, also known as ridge regression, adds a penalty term to the loss function to prevent overfitting of the model. The regularization strength determines how much weight is given to this penalty term, relative to the original loss function. A higher value of λ will result in a more heavily regularized model, which may be less prone to overfitting but also less flexible in fitting the training data. The value of λ is typically determined using a validation set or cross-validation to select the hyperparameter that results in the best performance on a held-out set.
+
+<h2> 5 Model Evaluation </h2>
+To calculate precision, recall, F1-score, and accuracy from a confusion matrix, we first need to define the following terms:
+
+True Positive (TP): The number of examples that are actually positive and are correctly predicted as positive.
+False Positive (FP): The number of examples that are actually negative but are incorrectly predicted as positive.
+False Negative (FN): The number of examples that are actually positive but are incorrectly predicted as negative.
+True Negative (TN): The number of examples that are actually negative and are correctly predicted as negative.
+
+|               | Positive          | Negative  |
+| ------------- |:-------------:| -----:|
+| Actual Positive     | 8 | 2 |
+| Actual Negative     | 16     |   974 |
+|
+
+
+
+
 
