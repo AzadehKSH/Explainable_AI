@@ -2,7 +2,7 @@
 Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
 
 # Table of contents
-  1 [Specifying ML Tasks](#02_exercises) "/n"
+  1 [Specifying ML Tasks](#Specifying_ML_Tasks) <br>
   2 [Generative vs Discriminative Models](#Generative_vs_Discriminative_Models) 
   3 [Definitions Math in ML](#Definitions_Math_in_ML) 
   4 [Hyperparameters](#Hyperparameters)
