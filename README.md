@@ -2,14 +2,14 @@
 Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
 
 # Table of contents
-1 [Specifying ML Tasks](#02_exercises) 
-2 [Generative vs Discriminative Models](#Generative_vs_Discriminative_Models) 
-3 [Definitions Math in ML](#Definitions_Math_in_ML) 
-4 [Hyperparameters](#Hyperparameters)
-5 [Model Evaluation](#Model_Evaluation)
-6 [Information Leakage ](#Information_Leakage )
-7 [KNN Classifier](# KNN_Classifier)
-8 [Over and Underfitting](#Over_and_Underfitting)
+  1 [Specifying ML Tasks](#02_exercises) 
+  2 [Generative vs Discriminative Models](#Generative_vs_Discriminative_Models) 
+  3 [Definitions Math in ML](#Definitions_Math_in_ML) 
+  4 [Hyperparameters](#Hyperparameters)
+  5 [Model Evaluation](#Model_Evaluation)
+  6 [Information Leakage ](#Information_Leakage )
+  7 [KNN Classifier](#KNN_Classifier)
+  8 [Over and Underfitting](#Over_and_Underfitting)
 
 <h1> Questions 02_exercises file </h1> 
 <h2> 1-Specifying ML Tasks </h2> <a name="Specifying_ML_Tasks"></a>
