@@ -2,15 +2,16 @@
 Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
 
 # Table of contents
-1. [02_exercises](#02_exercises)
-1.1 [Specifying ML Tasks](#02_exercises) 
+1 [Specifying ML Tasks](#02_exercises) 
+2 [Generative vs Discriminative Models](#Generative_vs_Discriminative_Models) 
+3 [Definitions Math in ML](#Definitions_Math_in_ML) 
+4 [Hyperparameters](#Hyperparameters)
+5 [Model Evaluation](#Model_Evaluation)
+6 [Information Leakage ](#Information_Leakage )
+7 [KNN Classifier](# KNN_Classifier)
+8 [Over and Underfitting](#Over_and_Underfitting)
 
-
-
-
-
-
-<h1> Questions 02_exercises file </h1> <a name="02_exercises"></a>
+<h1> Questions 02_exercises file </h1> 
 <h2> 1-Specifying ML Tasks </h2> <a name="Specifying_ML_Tasks"></a>
 <p> For the following problem descriptions, explain whether the problem is a supervised or an
 unsupervised problem and whether it is classification, regression, or clustering.
@@ -35,7 +36,7 @@ This is a supervised problem of language modeling. The goal is to train a model 
   </p>
 
 
-<h2>2 Generative vs Discriminative Models</h2>
+<h2>2 Generative vs Discriminative Models</h2> <a name="Generative_vs_Discriminative_Models"></a>
 Explain the difference between a generative and a discriminative model. Give an example for each of them?!
 
 <p>
@@ -48,7 +49,7 @@ An example of a discriminative model is a logistic regression classifier, which 
 The main difference between a generative and a discriminative model is the type of probability distribution that they learn. A generative model learns the joint probability distribution of the input features and the output labels, which can be used to generate new examples or perform other tasks such as data augmentation or missing data imputation. A discriminative model learns the conditional probability distribution of the output labels given the input features, which is directly relevant for the task of making predictions.
 </p>
 
-<h2>3 Definitions</h2>
+<h2>3 Definitions Math in ML</h2> <a name="Definitions_Math_in_ML"></a>
 
 1. Mean squared error (MSE):
 
@@ -89,7 +90,7 @@ where n is the number of examples in the dataset, yi is the actual value of the 
 
 The MAE is a good measure of the average absolute deviation of the predictions from the true values, and is less sensitive to outliers compared to the mean squared error (MSE). However, it does not penalize large errors as strongly as the MSE, and may not be as effective in cases where small errors are more important than large errors.
 
-<h2> 4 Hyperparameters </h2>
+<h2> 4 Hyperparameters </h2> <a name="Hyperparameters"></a>
 What is the difference between hyperparameters and parameters. Give an example of a hyperparameter for a logistic regression model with L2 regularization?!
 In machine learning, a model is typically defined by a set of parameters and hyperparameters, which are used to control the behavior of the model during training and inference.
 
@@ -99,7 +100,7 @@ Hyperparameters, on the other hand, are the variables that control the behavior 
 
 An example of a hyperparameter for a logistic regression model with L2 regularization is the regularization strength parameter, often denoted as λ (lambda). L2 regularization, also known as ridge regression, adds a penalty term to the loss function to prevent overfitting of the model. The regularization strength determines how much weight is given to this penalty term, relative to the original loss function. A higher value of λ will result in a more heavily regularized model, which may be less prone to overfitting but also less flexible in fitting the training data. The value of λ is typically determined using a validation set or cross-validation to select the hyperparameter that results in the best performance on a held-out set.
 
-<h2> 5 Model Evaluation </h2>
+<h2> 5 Model Evaluation </h2> <a name="Model_Evaluations"></a>
 To calculate precision, recall, F1-score, and accuracy from a confusion matrix, we first need to define the following terms:
 
 True Positive (TP): The number of examples that are actually positive and are correctly predicted as positive.
@@ -197,7 +198,7 @@ On the other hand, k-fold cross-validation addresses the high variance issue by 
 
 In summary, the choice between k-fold cross-validation and splitting data into a single train and test part depends on the balance between the bias and variance of the performance estimate of the model. If a quick evaluation is required, or if the dataset is very large, splitting the data into a single train and test part may be appropriate. However, if a more accurate estimate of the model performance is required, k-fold cross-validation is a better choice, despite its higher computational cost.
 
-<h2> 6 Information Leakage </h2>
+<h2> 6 Information Leakage </h2> <a name="Information_Leakage "></a>
 
 1. Define the term information leakage with respect to model training?!
 
@@ -225,13 +226,13 @@ features for the classifier. Then you split the data.
 (c) This scenario does not have information leakage, as long as the word frequencies are computed based only on the training set and not on the entire dataset. The data has been split into training and test sets, and the features have been generated based on the training set only. As long as the test set is not used in any way during the feature engineering process, there is no risk of information leakage.
 
 
-<h2> 7 KNN Classifier</h2>
+<h2> 7 KNN Classifier</h2> <a name=" KNN_Classifier "></a>
 For point 3:  [3, 2, 1, 10, 8]. The three closest labeled points are [1, 1, 2],  predict the majority class, which is 1.
 For point 10:  [10, 9, 6, 3, 1]. The three closest labeled points are [1, 1, 2], predict the majority class, which is 1.
 For point 6:  [6, 5, 2, 7, 5]. The three closest labeled points are [2, 2, 1],  predict the majority class, which is 2.
 then [3, 10, 6] = [1, 1, 2].
 
-<h2> 8 Over- and Underfitting </h2>
+<h2> 8 Over and Underfitting </h2> <a name=" Over_and_Underfitting "></a>
 
 1. Define overfitting?!
 
