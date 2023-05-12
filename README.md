@@ -159,6 +159,10 @@ plt.title('ROC Curve')
 plt.show()
 ```
 
+<p align="center">
+  <img src="https://github.com/AzadehKSH/Explainable_AI/blob/main/roc.JPG" width="350" title="ROC curve">
+</p>
+
 3. Explain when using a ROC curve make sense compared to just using accuracy etc?!
 ROC curves are typically used in binary classification problems where the positive class is rare or the cost of false positives and false negatives are significantly different. In such cases, accuracy alone may not be a good metric to evaluate the performance of a classifier.
 
@@ -268,5 +272,7 @@ for i, model in enumerate(models):
 plt.tight_layout()
 plt.show()
 ```
-
+<p align="center">
+  <img src="https://github.com/AzadehKSH/Explainable_AI/blob/main/fitting.JPG" width="350" title="Fitting">
+</p>
 
