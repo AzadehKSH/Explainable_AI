@@ -1,8 +1,17 @@
 # Explainable_AI
-# Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
+Every week I recieve the challang from the Prof.Martin Becker and its my answers to it.
 
-<h1> Questions 02_exercises file </h1>
-<h2> 1-Specifying ML Tasks </h2>
+# Table of contents
+1. [02_exercises](#02_exercises)
+  1. [Specifying ML Tasks](#02_exercises) 
+
+
+
+
+
+
+<h1> Questions 02_exercises file </h1> <a name="02_exercises"></a>
+<h2> 1-Specifying ML Tasks </h2> <a name="Specifying_ML_Tasks"></a>
 <p> For the following problem descriptions, explain whether the problem is a supervised or an
 unsupervised problem and whether it is classification, regression, or clustering.
   </p>
